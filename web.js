@@ -4,6 +4,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var app = express.createServer(express.logger());
+var io = require('socket.io').listen(app);
 
 app.configure(function () {
   app.use(express.logger());
@@ -120,6 +121,13 @@ app.del('/ws/item/:id', auth, function (req, res) {
     res.send(item);
   }, error);
 });*/
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {

@@ -2,7 +2,8 @@ define(
   [ 'order!vendor/underscore-min',
     'order!vendor/backbone',
     'handlebars',
-    'vendor/bootstrap'
+    'vendor/bootstrap',
+    '/socket.io/socket.io.js'
   ], function(){
 
     Backbone.View.prototype.close = function() {
