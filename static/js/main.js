@@ -13,6 +13,5 @@ require(['require', 'webstack'], function (require) {
     });
   }
   require([], function () {
-    alert('main');
   });
 });
