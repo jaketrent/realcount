@@ -3483,6 +3483,15 @@ a.thumbnail:hover {
 .collapse.in {
   height: auto;
 }
+
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
+
 /*!
  * Bootstrap Responsive v2.0.2
  *
