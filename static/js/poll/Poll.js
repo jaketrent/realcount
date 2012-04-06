@@ -11,6 +11,9 @@ define(function () {
       }
       return url;
     },
+    isNew : function() {
+      return this.get('_id') == null;
+    },
     validate: function (attrs) {
       if (attrs.title === undefined || attrs.title.length === 0) {
         return "Title required for poll";
