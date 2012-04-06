@@ -1,4 +1,4 @@
-define(['poll/IndexView', 'poll/CreateView', 'ViewSwitcher'], function (IndexView, CreateView, ViewSwitcher) {
+define(['AlertView', 'poll/IndexView', 'poll/CreateView', 'ViewSwitcher'], function (AlertView, IndexView, CreateView, ViewSwitcher) {
   return Backbone.Router.extend({
     routes: {
       '': 'index',
@@ -6,7 +6,9 @@ define(['poll/IndexView', 'poll/CreateView', 'ViewSwitcher'], function (IndexVie
       'poll/create': 'create'
     },
     initialize: function () {
+      _.bindAll(this, 'index', 'create');
       this.viewSwitcher = new ViewSwitcher();
+      new AlertView();
     },
     index: function () {
       this.viewSwitcher.switchView(new IndexView());

@@ -105,13 +105,13 @@ app.get('/ws/poll', auth, function(req, res) {
   }, error);
 });
 
-/*
-app.post('/ws/item', auth, function(req, res) {
-  item.add(req.body, function (item) {
-    res.send(item);
+app.post('/ws/poll', auth, function(req, res) {
+  poll.add(req.body, function (poll) {
+    res.send(poll);
   }, error);
 });
 
+/*
 app.put('/ws/item/:id', auth, function(req, res) {
   item.save(req.params.id, req.body, function (item) {
     res.send(item);

@@ -3,7 +3,8 @@ define(['poll/Poll', 'tmpl!poll/create', 'tmpl!poll/opt'], function (Poll, creat
     el: '#main',
     events: {
       'click .add-opt': 'addOpt',
-      'click .rm-opt': 'rmOpt'
+      'click .rm-opt': 'rmOpt',
+      'click .save': 'save'
     },
     initialize: function () {
       this.model = new Poll();
@@ -19,6 +20,35 @@ define(['poll/Poll', 'tmpl!poll/create', 'tmpl!poll/opt'], function (Poll, creat
       var $opts = this.$('#opts li');
       var index = $opts.index($(evt.currentTarget).closest('li'));
       $opts.eq(index).remove();
+    },
+    getOpts: function () {
+      var opts = [];
+      _(this.$('#opts li')).each(function (li) {
+        var $li = $(li);
+        opts.push({
+          title: $li.find('.title').val(),
+          title_slug: $li.find('.title_slug').val()
+        });
+      });
+      return opts;
+    },
+    save: function () {
+      var self = this;
+      var opts = this.getOpts();
+      this.model.save({
+        title: this.$('#title').val(),
+        title_slug: this.$('#title_slug').val(),
+        desc: this.$('#desc').val(),
+        opts: opts
+      }, {
+        success: function () {
+          Backbone.Events.trigger('alert', 'Poll created!', 'success');
+          self.initialize();
+        },
+        error: function () {
+          Backbone.Events.trigger('alert', 'Error creating poll!', 'error');
+        }
+      })
     },
     onClose: function () {
       this.model.off();

@@ -11,7 +11,8 @@
     "mongojs": "0.3.x",
     "mongodb": "0.9.x",
     "passport": "0.1.x",
-    "passport-local": "0.1.x"
+    "passport-local": "0.1.x",
+    "underscore": "1.x.x"
   },
   "subdomain": "realcount",
   "scripts": {
