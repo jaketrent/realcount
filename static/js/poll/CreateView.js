@@ -4,7 +4,8 @@ define(['poll/Poll', 'tmpl!poll/create', 'tmpl!poll/opt'], function (Poll, creat
     events: {
       'click .add-opt': 'addOpt',
       'click .rm-opt': 'rmOpt',
-      'click .save': 'save'
+      'click .save': 'save',
+      'click .cancel': 'cancel'
     },
     initialize: function () {
       this.model = new Poll();
@@ -49,6 +50,9 @@ define(['poll/Poll', 'tmpl!poll/create', 'tmpl!poll/opt'], function (Poll, creat
           Backbone.Events.trigger('alert', 'Error creating poll!', 'error');
         }
       })
+    },
+    cancel: function () {
+      window.history.back();
     },
     onClose: function () {
       this.model.off();

@@ -117,12 +117,12 @@ app.put('/ws/item/:id', auth, function(req, res) {
     res.send(item);
   }, error);
 });
-
-app.del('/ws/item/:id', auth, function (req, res) {
-  item.remove(req.params.id, function (item) {
-    res.send(item);
+ */
+app.del('/ws/poll/:id', auth, function (req, res) {
+  poll.remove(req.params.id, function () {
+    res.send();
   }, error);
-});*/
+});
 
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
