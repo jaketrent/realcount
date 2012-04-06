@@ -1,0 +1,12 @@
+<div class="pg vote-pg">
+  <a href="#poll/{{ title_slug }}" class="btn btn-large btn-primary pull-right">View Results &raquo;</a>
+  <h1>{{ title }}</h1>
+  <p>{{ desc }}</p>
+  <ul id="opts">
+    {{#each opts}}
+      <li>
+        <a href="#" class="btn btn-large span6">{{ title }}</a>
+      </li>
+    {{/each}}
+  </ul>
+</div>
