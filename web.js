@@ -1,5 +1,6 @@
 var express = require('express');
 var user = require('./lib/user.js');
+var poll = require('./lib/poll.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -97,13 +98,14 @@ function error(err, data) {
   console.log("ERROR: " + err);
   console.log("DATA: " + data);
 }
-/*
-app.get('/ws/item', auth, function(req, res) {
-  item.get(function (items) {
-    res.send(items);
+
+app.get('/ws/poll', auth, function(req, res) {
+  poll.getAll(function (polls) {
+    res.send(polls);
   }, error);
 });
 
+/*
 app.post('/ws/item', auth, function(req, res) {
   item.add(req.body, function (item) {
     res.send(item);

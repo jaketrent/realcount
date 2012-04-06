@@ -1,0 +1,42 @@
+<form class="form-horizontal pg create-pg">
+  <fieldset>
+    <legend>Create Poll</legend>
+    <div class="control-group">
+      <label class="control-label" for="title">Question</label>
+      <div class="controls">
+        <input type="text" class="input-xlarge" id="title" value="{{ title }}"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="title_slug">URL</label>
+      <div class="controls">
+        <input type="text" class="input-xlarge" id="title_slug" value="{{ title_slug }}"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="desc">Description</label>
+      <div class="controls">
+        <textarea class="input-xlarge" id="desc" rows="3">{{ desc }}</textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Options</label>
+      <div class="controls">
+        <ul id="opts">
+          {{#each opts}}
+            <li>
+              <div class="input-append">
+                <input class="input-large title" type="text" value="{{ title }}" /><button class="btn rm-opt" type="button">-</button>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+        <button class="btn add-opt" type="button">+</button>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary save">Save changes</button>
+      <button class="btn cancel">Cancel</button>
+    </div>
+  </fieldset>
+</form>

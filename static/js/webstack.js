@@ -1,7 +1,8 @@
 define(
   [ 'order!vendor/underscore-min',
     'order!vendor/backbone',
-    'handlebars',
+    'order!handlebars',
+    'order!handlebars-ext',
     'vendor/bootstrap',
     '/socket.io/socket.io.js'
   ], function(){
