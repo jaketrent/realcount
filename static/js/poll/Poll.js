@@ -1,13 +1,13 @@
 define(function () {
   return Backbone.Model.extend({
-    idAttribute: '_id',
+    idAttribute: 'title_slug',
     defaults: {
       opts: []
     },
     url: function () {
       var url = '/ws/poll';
       if (!this.isNew()) {
-        url += '/' + this.get('_id');
+        url += '/' + this.get('title_slug');
       }
       return url;
     },

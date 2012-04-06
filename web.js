@@ -105,6 +105,12 @@ app.get('/ws/poll', auth, function(req, res) {
   }, error);
 });
 
+app.get('/ws/poll/:title_slug', auth, function(req, res) {
+  poll.get(req.params.title_slug, function (polls) {
+    res.send(polls[0]);
+  }, error);
+});
+
 app.post('/ws/poll', auth, function(req, res) {
   poll.add(req.body, function (poll) {
     res.send(poll);
@@ -118,8 +124,8 @@ app.put('/ws/item/:id', auth, function(req, res) {
   }, error);
 });
  */
-app.del('/ws/poll/:id', auth, function (req, res) {
-  poll.remove(req.params.id, function () {
+app.del('/ws/poll/:title_slug', auth, function (req, res) {
+  poll.remove(req.params.title_slug, function () {
     res.send();
   }, error);
 });
