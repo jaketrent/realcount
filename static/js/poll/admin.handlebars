@@ -1,0 +1,36 @@
+<div class="row-fluid pg admin-pg">
+  <div class="span12">
+    <a href="#admin/poll/create" class="btn btn-success pull-right">
+      <i class="icon-plus icon-white"></i>
+      Add Poll
+    </a>
+    <h1>Polls Admin</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Poll</th>
+          <th class="opt-col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#iter this}}
+        <tr>
+          <td>{{ iPlus1 }}</td>
+          <td><a class="btn" href="#polls/{{ title_slug }}/vote">{{ title }}</a></td>
+          <td class="opt-col">
+            <div class="btn-group">
+              <a class="btn btn-small btn-info" href="#"><i class="icon-cog icon-white"></i> Options</a>
+              <a class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
+                <li><a href="javascript:void(0);" class="rm-poll"><i class="icon-trash"></i> Remove</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      {{/iter}}
+      </tbody>
+    </table>
+  </div><!--/span-->
+</div><!--/row-->
