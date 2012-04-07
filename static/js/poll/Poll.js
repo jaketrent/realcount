@@ -5,11 +5,7 @@ define(function () {
       opts: []
     },
     url: function () {
-      var url = '/ws/poll';
-      if (!this.isNew()) {
-        url += '/' + this.get('title_slug');
-      }
-      return url;
+      return '/ws/poll/' + this.get('title_slug');
     },
     isNew : function() {
       return this.get('_id') == null;
