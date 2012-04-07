@@ -111,7 +111,7 @@ app.get('/ws/poll/:title_slug', auth, function(req, res) {
   }, error);
 });
 
-app.post('/ws/poll', auth, function(req, res) {
+app.post('/ws/poll/:tite_slug', auth, function(req, res) {
   poll.add(req.body, function (poll) {
     res.send(poll);
   }, error);
