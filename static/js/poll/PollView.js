@@ -2,6 +2,7 @@ define(['poll/Poll', 'tmpl!poll/poll', 'order!vendor/raphael.amd', 'order!vendor
   return Backbone.View.extend({
     el: '#main',
     initialize: function () {
+      _.bindAll(this, 'updateVote');
       this.model = new Poll({
         title_slug: this.options.title_slug
       });
@@ -10,6 +11,13 @@ define(['poll/Poll', 'tmpl!poll/poll', 'order!vendor/raphael.amd', 'order!vendor
         Backbone.Events.trigger('alert', 'Error fetching poll!', 'error');
       });
       this.model.fetch();
+
+      this.socket = io.connect('http://localhost');
+      this.socket.on('vote-updated', this.updateVote);
+    },
+    updateVote: function (json) {
+      this.model.set(json);
+      this.render();
     },
     render: function () {
       this.$el.html(pollTmpl(this.model.toJSON()));

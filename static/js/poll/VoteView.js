@@ -15,8 +15,7 @@ define(['poll/Poll', 'tmpl!poll/vote'], function (Poll, voteTmpl) {
       this.model.fetch();
 
       this.socket = io.connect('http://localhost');
-
-      this.socket.on('recorded', this.voteSuccess);
+      this.socket.on('vote-updated', this.voteSuccess);
     },
     render: function () {
       this.$el.html(voteTmpl(this.model.toJSON()));
