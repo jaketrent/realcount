@@ -14,7 +14,9 @@ define(['poll/Poll', 'tmpl!poll/poll', 'order!vendor/raphael.amd', 'order!vendor
     render: function () {
       this.$el.html(pollTmpl(this.model.toJSON()));
       var r = Raphael("chart", 440,440);
-      var pie = r.piechart(220,220, 200, [55, 20, 13, 32, 5, 1, 2, 10]);
+      var pie = r.piechart(220,220, 200, this.model.get('opts').map(function (opt) {
+        return opt.votes;
+      }));
       pie.hover(function () {
         this.sector.stop();
         this.sector.scale(1.1, 1.1, this.cx, this.cy);
