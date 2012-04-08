@@ -1,6 +1,7 @@
 var express = require('express');
 var user = require('./lib/user.js');
 var poll = require('./lib/poll.js');
+var vote = require('./lib/vote.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -131,9 +132,13 @@ app.del('/ws/poll/:title_slug', auth, function (req, res) {
 });
 
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
+  socket.on('vote', function (data) {
+    console.log('For poll:' + data.poll.title + ", voting: " + data.choice);
+    vote.add(data.poll._id, data.choice, function () {
+      socket.emit('recorded', {
+        userId: 'blah'
+      });
+    }, error);
   });
 });
 

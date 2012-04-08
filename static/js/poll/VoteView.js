@@ -1,6 +1,9 @@
 define(['poll/Poll', 'tmpl!poll/vote'], function (Poll, voteTmpl) {
   return Backbone.View.extend({
     el: '#main',
+    events: {
+      'click #opts a': 'vote'
+    },
     initialize: function () {
       this.model = new Poll({
         title_slug: this.options.title_slug
@@ -10,9 +13,24 @@ define(['poll/Poll', 'tmpl!poll/vote'], function (Poll, voteTmpl) {
         Backbone.Events.trigger('alert', 'Error fetching poll!', 'error');
       });
       this.model.fetch();
+
+      this.socket = io.connect('http://localhost');
+
+      this.socket.on('recorded', this.voteSuccess);
     },
     render: function () {
       this.$el.html(voteTmpl(this.model.toJSON()));
+    },
+    vote: function (evt) {
+      var index = this.$('#opts a').index($(evt.currentTarget));
+      var vote_slug = this.model.get('opts')[index].title_slug;
+      this.socket.emit('vote', {
+        poll: this.model.toJSON(),
+        choice: vote_slug
+      });
+    },
+    voteSuccess: function (data) {
+      Backbone.Events.trigger('alert', 'Recorded vote for: ' + data.userId, 'success');
     }
   });
 });

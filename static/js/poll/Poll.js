@@ -14,6 +14,9 @@ define(function () {
       if (attrs.title === undefined || attrs.title.length === 0) {
         return "Title required for poll";
       }
+      if (attrs.title_slug === undefined || attrs.title_slug.length === 0) {
+        return "Title slug required for poll";
+      }
     }
   });
 });
