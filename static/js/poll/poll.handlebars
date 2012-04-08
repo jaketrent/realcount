@@ -3,15 +3,14 @@
   <h1>{{ title }}</h1>
   <p>{{ desc }}</p>
 
-  <h2>Chart</h2>
   <div id="chart"></div>
 
   <h2>Choices</h2>
-  <ul id="opts">
+  <div class="row-fluid" id="opts">
     {{#each opts}}
-      <li>
-        <a href="#" class="btn btn-large disabled span6">{{ votes }} - {{ title }}</a>
-      </li>
+    <div class="span6">
+      <a href="javascript:void(0);" class="btn btn-large disabled">{{ votes }} - {{ title }}</a>
+    </div>
     {{/each}}
-  </ul>
+  </div>
 </div>

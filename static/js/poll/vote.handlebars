@@ -2,11 +2,12 @@
   <a href="#poll/{{ title_slug }}" class="btn btn-large btn-primary pull-right">View Results &raquo;</a>
   <h1>{{ title }}</h1>
   <p>{{ desc }}</p>
-  <ul id="opts">
+
+  <div class="row-fluid" id="opts">
     {{#each opts}}
-      <li>
-        <a href="javascript:void(0);" class="btn btn-large span6">{{ title }}</a>
-      </li>
+      <div class="span6">
+        <a href="javascript:void(0);" class="btn btn-large">{{ title }}</a>
+      </div>
     {{/each}}
-  </ul>
+  </div>
 </div>
