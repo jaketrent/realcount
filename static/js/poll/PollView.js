@@ -31,6 +31,10 @@ define(['poll/Poll', 'tmpl!poll/poll', 'order!vendor/raphael.amd', 'order!vendor
       }, function () {
         this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
       });
+    },
+    onClose: function () {
+      this.model.off();
+      this.socket.disconnect();
     }
   });
 });

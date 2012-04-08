@@ -29,6 +29,9 @@ define(['tmpl!poll/admin', 'poll/Polls'], function (adminTmpl, Polls) {
           Backbone.Events.trigger('alert', 'Error removing poll!', 'error');
         }
       });
+    },
+    onClose:  function () {
+      this.collection.off();
     }
   });
 });
