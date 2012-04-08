@@ -25,14 +25,29 @@ define(['poll/Poll', 'tmpl!poll/poll', 'order!vendor/raphael.amd', 'order!vendor
         return opt.votes;
       });
       if (_.min(votes) > 0) {
-        var r = Raphael("chart", 440,440);
-        var pie = r.piechart(220,220, 200, votes);
+        var size = this.calcChartSize();
+        var r = Raphael("chart", size.w, size.h);
+        var pie = r.piechart(size.x, size.y, size.r, votes);
         pie.hover(function () {
           this.sector.stop();
           this.sector.scale(1.1, 1.1, this.cx, this.cy);
         }, function () {
           this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
         });
+      }
+    },
+    calcChartSize: function () {
+      var w = $(window).width() - 50;
+      var h = $(window).height() - 50;
+      if (w > h) {
+        w = h - 250;
+      }
+      return {
+        h: w,
+        w: w,
+        x: w / 2,
+        y: w / 2,
+        r: (w / 2) * .9
       }
     },
     onClose: function () {
