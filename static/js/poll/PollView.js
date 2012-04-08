@@ -30,15 +30,15 @@ define(['poll/Poll', 'tmpl!poll/poll', 'order!vendor/raphael.amd', 'order!vendor
         var pie = r.piechart(size.x, size.y, size.r, votes);
         pie.hover(function () {
           this.sector.stop();
-          this.sector.scale(1.1, 1.1, this.cx, this.cy);
+          this.sector.scale(1.1, 1.1, this.cx, this.cy)
         }, function () {
           this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
         });
       }
     },
     calcChartSize: function () {
-      var w = $(window).width() - 50;
-      var h = $(window).height() - 50;
+      var w = $(window).width() - 70;
+      var h = $(window).height() - 70;
       if (w > h) {
         w = h - 250;
       }
