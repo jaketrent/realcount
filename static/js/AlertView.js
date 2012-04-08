@@ -9,9 +9,10 @@ define(['tmpl!alert'], function(alertTmpl) {
       this.$el.html('');
     },
     alert: function (text, type) {
+      var class = (type === undefined) ? '' : 'alert-' + type;
       this.$el.append(alertTmpl({
         alert: text,
-        class: type === undefined ? '' : 'alert-' + type
+        class: class
       }));
     }
   })
