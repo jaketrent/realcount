@@ -132,7 +132,6 @@ app.del('/ws/poll/:title_slug', auth, function (req, res) {
 });
 
 io.sockets.on('connection', function (socket) {
-  console.log('CONNECTED TO SOCKET.IO');
   socket.on('vote', function (data) {
     console.log('For poll:' + data.poll.title + ", voting: " + data.choice);
     vote.add(data.poll._id, data.choice, function (asdf) {
