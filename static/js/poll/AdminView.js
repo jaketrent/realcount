@@ -1,8 +1,9 @@
-define(['tmpl!poll/admin', 'poll/Polls'], function (adminTmpl, Polls) {
+define(['tmpl!poll/admin', 'poll/Polls', 'poll/AllVotes'], function (adminTmpl, Polls, AllVotes) {
   return Backbone.View.extend({
     el: '#main',
     events: {
-      'click .rm-poll': 'rmPoll'
+      'click .rm-poll': 'rmPoll',
+      'click .clear-votes': 'clearVotes'
     },
     initialize: function () {
       this.collection = new Polls();
@@ -27,6 +28,23 @@ define(['tmpl!poll/admin', 'poll/Polls'], function (adminTmpl, Polls) {
         },
         error: function () {
           Backbone.Events.trigger('alert', 'Error removing poll!', 'error');
+        }
+      });
+    },
+    clearVotes: function (evt) {
+      var self = this;
+      var index = this.$('#polls tr').index($(evt.currentTarget).closest('tr'));
+      var poll = this.collection.at(index);
+      var vote = new AllVotes({
+        poll_id: poll.get('_id')
+      });
+      vote.destroy({
+        success: function () {
+          self.render();
+          Backbone.Events.trigger('alert', 'Cleared votes from poll!', 'success');
+        },
+        error: function () {
+          Backbone.Events.trigger('alert', 'Error clearing poll!', 'error');
         }
       });
     },

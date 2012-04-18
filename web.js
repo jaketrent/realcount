@@ -131,6 +131,12 @@ app.del('/ws/poll/:title_slug', auth, function (req, res) {
   }, error);
 });
 
+app.del('/ws/vote/:poll_id', auth, function (req, res) {
+  vote.clearForPoll(req.params.poll_id, function () {
+    res.send();
+  }, error);
+});
+
 io.sockets.on('connection', function (socket) {
   socket.on('vote', function (data) {
     console.log('For poll:' + data.poll.title + ", voting: " + data.choice);
