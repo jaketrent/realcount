@@ -16,7 +16,9 @@ define(['poll/Polls', 'tmpl!poll/index'], function (Polls, indexTmpl) {
       }));
     },
     onClose: function () {
+      this.off();
       this.collection.off();
+      this.undelegateEvents();
     }
   });
 });

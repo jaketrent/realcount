@@ -28,8 +28,10 @@ define(['poll/Poll', 'tmpl!poll/vote', 'util'], function (Poll, voteTmpl, util) 
       });
     },
     onClose: function () {
+      this.off();
       this.model.off();
       this.socket.disconnect();
+      this.undelegateEvents();
     }
   });
 });

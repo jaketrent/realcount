@@ -51,8 +51,10 @@ define(['poll/Poll', 'tmpl!poll/poll', 'util', 'order!vendor/raphael.amd', 'orde
       }
     },
     onClose: function () {
+      this.off();
       this.model.off();
       this.socket.disconnect();
+      this.undelegateEvents();
     }
   });
 });

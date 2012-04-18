@@ -24,7 +24,7 @@ define(
       'admin/poll/create': 'create'
     },
     initialize: function () {
-      _.bindAll(this, 'index', 'create');
+      _.bindAll(this, 'index', 'poll', 'vote', 'admin', 'create');
       this.viewSwitcher = new ViewSwitcher();
       new AlertView();
     },

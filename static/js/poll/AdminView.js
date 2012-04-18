@@ -49,7 +49,9 @@ define(['tmpl!poll/admin', 'poll/Polls', 'poll/AllVotes'], function (adminTmpl, 
       });
     },
     onClose:  function () {
+      this.off();
       this.collection.off();
+      this.undelegateEvents();
     }
   });
 });

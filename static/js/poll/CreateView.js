@@ -55,7 +55,9 @@ define(['poll/Poll', 'tmpl!poll/create', 'tmpl!poll/opt'], function (Poll, creat
       window.history.back();
     },
     onClose: function () {
+      this.off();
       this.model.off();
+      this.undelegateEvents();
     }
   });
 });
