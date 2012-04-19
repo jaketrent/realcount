@@ -14,7 +14,7 @@ define(['poll/Poll', 'tmpl!poll/vote', 'util'], function (Poll, voteTmpl, util) 
       });
       this.model.fetch();
 
-      this.socket = window.socket;
+      this.socket = window.socket || util.mkSocket();
     },
     render: function () {
       this.$el.html(voteTmpl(this.model.toJSON()));

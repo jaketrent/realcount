@@ -12,8 +12,7 @@ require(['require', 'webstack'], function (require) {
       /*for old browsers*/
     });
   }
-  require(['util', 'poll/Router'], function (util, PollRouter) {
-    window.socket = io.connect(util.getOrigin());
+  require(['poll/Router'], function (PollRouter) {
     new PollRouter();
     Backbone.history.start();
   });
