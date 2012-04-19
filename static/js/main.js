@@ -12,17 +12,9 @@ require(['require', 'webstack'], function (require) {
       /*for old browsers*/
     });
   }
-  require(['poll/Router'], function (PollRouter) {
+  require(['util', 'poll/Router'], function (util, PollRouter) {
+    window.socket = io.connect(util.getOrigin());
     new PollRouter();
     Backbone.history.start();
-
-
-
-
-    /*var socket = io.connect('http://localhost');
-    socket.on('news', function (data) {
-      console.log(data);
-      socket.emit('my other event', { my: 'data' });
-    });*/
   });
 });

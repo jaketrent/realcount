@@ -14,7 +14,7 @@ define(['poll/Poll', 'tmpl!poll/vote', 'util'], function (Poll, voteTmpl, util) 
       });
       this.model.fetch();
 
-      this.socket = io.connect(util.getOrigin());
+      this.socket = window.socket;
     },
     render: function () {
       this.$el.html(voteTmpl(this.model.toJSON()));
@@ -30,7 +30,6 @@ define(['poll/Poll', 'tmpl!poll/vote', 'util'], function (Poll, voteTmpl, util) 
     onClose: function () {
       this.off();
       this.model.off();
-      this.socket.disconnect();
       this.undelegateEvents();
     }
   });
