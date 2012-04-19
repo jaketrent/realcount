@@ -28,12 +28,6 @@ define(['poll/Poll', 'tmpl!poll/poll', 'util', 'order!vendor/raphael.amd', 'orde
         var size = this.calcChartSize();
         var r = Raphael("chart", size.w, size.h);
         var pie = r.piechart(size.x, size.y, size.r, votes);
-        pie.hover(function () {
-          this.sector.stop();
-          this.sector.scale(1.1, 1.1, this.cx, this.cy)
-        }, function () {
-          this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
-        });
       }
     },
     calcChartSize: function () {
