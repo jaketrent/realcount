@@ -5,7 +5,7 @@ define(['poll/Polls', 'tmpl!poll/index'], function (Polls, indexTmpl) {
       this.collection = new Polls();
       this.collection.on('reset', this.render, this);
       this.collection.on('error', function () {
-        alert('polls error');
+        Backbone.Events.trigger('alert', 'Error fetching polls!', 'error')
       });
       this.collection.fetch();
     },
