@@ -16,8 +16,10 @@ define(['poll/Poll', 'tmpl!poll/poll', 'util', 'order!vendor/raphael.amd', 'orde
       this.socket.on('vote-updated', this.updateVote);
     },
     updateVote: function (json) {
-      this.model.set(json);
-      this.render();
+      if (this.model.get('title_slug') === json.title_slug) {
+        this.model.set(json);
+        this.render();
+      }
     },
     render: function () {
       this.$el.html(pollTmpl(this.model.toJSON()));
