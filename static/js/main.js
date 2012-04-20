@@ -16,4 +16,8 @@ require(['require', 'webstack'], function (require) {
     new PollRouter();
     Backbone.history.start();
   });
+
+  $('.nav a').click(function () {
+    $('.btn-navbar').click();
+  });
 });
