@@ -1,4 +1,4 @@
-define(['poll/Poll', 'tmpl!poll/vote', 'util'], function (Poll, voteTmpl, util) {
+define(['poll/Poll', 'tmpl!poll/vote'], function (Poll, voteTmpl) {
   return Backbone.View.extend({
     el: '#main',
     events: {
@@ -14,7 +14,7 @@ define(['poll/Poll', 'tmpl!poll/vote', 'util'], function (Poll, voteTmpl, util) 
       });
       this.model.fetch();
 
-      this.socket = window.socket || util.mkSocket();
+      this.socket = window.socket;
     },
     render: function () {
       this.$el.html(voteTmpl(this.model.toJSON()));

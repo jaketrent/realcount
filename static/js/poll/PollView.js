@@ -1,4 +1,4 @@
-define(['poll/Poll', 'tmpl!poll/poll', 'util', 'order!vendor/raphael.amd', 'order!vendor/g.raphael-min', 'order!vendor/g.pie-min'], function (Poll, pollTmpl, util) {
+define(['poll/Poll', 'tmpl!poll/poll', 'order!vendor/raphael.amd', 'order!vendor/g.raphael-min', 'order!vendor/g.pie-min'], function (Poll, pollTmpl) {
   return Backbone.View.extend({
     el: '#main',
     initialize: function () {
@@ -12,7 +12,7 @@ define(['poll/Poll', 'tmpl!poll/poll', 'util', 'order!vendor/raphael.amd', 'orde
       });
       this.model.fetch();
 
-      this.socket = window.socket || util.mkSocket();
+      this.socket = window.socket;
       this.socket.on('vote-updated', this.updateVote);
     },
     updateVote: function (json) {

@@ -5,8 +5,9 @@ define(
   , 'poll/IndexView'
   , 'poll/CreateView'
   , 'poll/NicknameView'
-  , 'ViewSwitcher'
   , 'poll/AdminView'
+  , 'ViewSwitcher'
+  , 'util'
   ], function
   ( AlertView
   , PollView
@@ -14,8 +15,9 @@ define(
   , IndexView
   , CreateView
   , NicknameView
-  , ViewSwitcher
   , AdminView
+  , ViewSwitcher
+  , util
   ) {
   return Backbone.Router.extend({
     routes: {
@@ -38,22 +40,27 @@ define(
       this.viewSwitcher.switchView(new IndexView());
     },
     poll: function (title_slug, nickname) {
-      if (this.ensureNickname(this.poll, title_slug, nickname)) {
+      if (this.setupSocket(this.poll, title_slug, nickname)) {
         this.viewSwitcher.switchView(new PollView({
           title_slug: title_slug
         }));
       }
     },
     vote: function (title_slug, nickname) {
-      if (this.ensureNickname(this.vote, title_slug, nickname)) {
+      if (this.setupSocket(this.vote, title_slug, nickname)) {
         this.viewSwitcher.switchView(new VoteView({
           title_slug: title_slug
         }));
       }
     },
-    ensureNickname: function (done, title_slug, nickname) {
+    setupSocket: function (done, title_slug, nickname) {
       if (this.nickname || nickname) {
         this.nickname = this.nickname || nickname;
+        this.socket = window.socket || util.mkSocket();
+        this.socket.emit('set-nickname', {
+          nickname: this.nickname
+        });
+        $('.nav-username').html('Welcome, ' + this.nickname + '!');
         return true;
       } else {
         this.viewSwitcher.switchView(new NicknameView({
