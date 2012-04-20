@@ -19,5 +19,7 @@ require(['require', 'webstack'], function (require) {
 
   $('.nav a').click(function () {
     $('.btn-navbar').click();
+    $('.nav li').removeClass('active');
+    $(this).parent('li').addClass('active');
   });
 });
