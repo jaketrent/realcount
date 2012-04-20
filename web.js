@@ -138,6 +138,10 @@ app.del('/ws/vote/:poll_id', auth, function (req, res) {
 });
 
 io.sockets.on('connection', function (socket) {
+
+  var address = socket.handshake.address;
+  console.log("New connection from " + address.address + ":" + address.port);
+
   socket.on('vote', function (data) {
     console.log('For poll:' + data.poll.title + ", voting: " + data.choice);
     vote.add(data.poll._id, data.choice, function (asdf) {
