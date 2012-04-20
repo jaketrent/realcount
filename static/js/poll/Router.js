@@ -32,7 +32,7 @@ define(
       Backbone.Events.on('navRoute', this.navRoute, this);
     },
     navRoute: function (routePath) {
-      this.navigate(routePath);
+      this.navigate(routePath, { trigger: true });
     },
     index: function () {
       this.viewSwitcher.switchView(new IndexView());
