@@ -4,7 +4,6 @@ define(
   , 'poll/VoteView'
   , 'poll/IndexView'
   , 'poll/CreateView'
-  , 'poll/NicknameView'
   , 'poll/AdminView'
   , 'ViewSwitcher'
   , 'util'
@@ -14,7 +13,6 @@ define(
   , VoteView
   , IndexView
   , CreateView
-  , NicknameView
   , AdminView
   , ViewSwitcher
   , util
@@ -54,21 +52,8 @@ define(
       }
     },
     setupSocket: function (done, title_slug, nickname) {
-      if (this.nickname || nickname) {
-        this.nickname = this.nickname || nickname;
-        this.socket = window.socket || util.mkSocket();
-        this.socket.emit('set-nickname', {
-          nickname: this.nickname
-        });
-        $('.nav-username').html('Welcome, ' + this.nickname + '!');
-        return true;
-      } else {
-        this.viewSwitcher.switchView(new NicknameView({
-          poll_title_slug: title_slug,
-          done: done
-        }));
-        return false;
-      }
+      this.socket = window.socket || util.mkSocket();
+      return true;
     },
     admin: function () {
       this.viewSwitcher.switchView(new AdminView());
