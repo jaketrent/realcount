@@ -142,10 +142,6 @@ io.sockets.on('connection', function (socket) {
   var address = socket.handshake.address;
   console.log("New connection from " + address.address + ":" + address.port);
 
-  socket.on('set-nickname', function (data) {
-    socket.set('nickname', data.nickname);
-  });
-
   socket.on('vote', function (data) {
     console.log('For poll:' + data.poll.title + ", voting: " + data.choice);
     vote.add(data.poll._id, data.choice, function (asdf) {
