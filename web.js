@@ -144,9 +144,12 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('vote', function (data) {
     console.log('For poll:' + data.poll.title + ", voting: " + data.choice);
-    vote.add(data.poll._id, data.choice, function (asdf) {
-      poll.get(data.poll.title_slug, function (polls) {
-        socket.broadcast.emit('vote-updated', polls[0]);
+    // same ip, same day
+    vote.isValid(data.poll._id, socket.handshake.address, function () {
+      vote.add(data.poll._id, data.choice, function (asdf) {
+        poll.get(data.poll.title_slug, function (polls) {
+          socket.broadcast.emit('vote-updated', polls[0]);
+        }, error);
       }, error);
     }, error);
   });
